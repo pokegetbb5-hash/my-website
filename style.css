@@ -1,0 +1,74 @@
+/* ==========================================================================
+   1. ビュー・トランジションの基本設定
+   ========================================================================== */
+
+/* 魔法のスイッチ：別ページへの通常リンクでもビュー・トランジションを有効にする */
+@view-transition {
+  navigation:auto;
+}
+
+/* アニメーションさせたいパーツ（メインコンテンツ）に識別名をつける */
+.content {
+  view-transition-name: page-content;
+}
+
+/* ==========================================================================
+   2. アニメーション（スライド）の定義
+   ========================================================================== */
+
+/* 共通設定：アニメーションの速度やタイミング */
+::view-transition-group(page-content) {
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+}
+
+/* 古いページ（出ていく方）の動き */
+::view-transition-old(page-content) {
+  animation-name: slide-out;
+}
+
+/* 新しいページ（入ってくる方）の動き */
+::view-transition-new(page-content) {
+  animation-name: slide-in;
+}
+
+/* アニメーションの具体的な軌道 */
+@keyframes slide-out {
+  to { transform: translateX(-100vw); } /* 左へ消えていく */
+}
+
+@keyframes slide-in {
+  from { transform: translateX(100vw); } /* 右から入ってくる */
+}
+
+/* ==========================================================================
+   3. 基本的な見た目のデザイン（おまけ）
+   ========================================================================== */
+body {
+  margin: 0;
+  font-family: sans-serif;
+  overflow-x: hidden;
+}
+.navbar {
+  background: #333;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  position: relative;
+  z-index: 10; /* アニメーションするコンテンツより上に表示 */
+}
+.content {
+  padding: 50px;
+  height: 80vh;
+}
+.site-home { background-color: #e3faf2; }
+.site-about { background-color: #e8f4fd; }
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #0076df;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 20px;
+}
