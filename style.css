@@ -51,15 +51,17 @@ body {
 }
 .navbar {
   background: #333;
-  color: white;
-  padding: 15px;
+  color: #fff;
+  padding: 14px 16px;
   text-align: center;
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 10; /* アニメーションするコンテンツより上に表示 */
 }
 .content {
-  padding: 50px;
-  height: 80vh;
+  padding: 24px;
+  box-sizing: border-box;
+  min-height: calc(100vh - 56px);
 }
 .site-home { background-color: #e3faf2; }
 .site-about { background-color: #e8f4fd; }
@@ -71,4 +73,23 @@ body {
   text-decoration: none;
   border-radius: 5px;
   margin-top: 20px;
+}
+
+/* -------------------- */
+/* レスポンシブ調整 */
+/* -------------------- */
+html { -webkit-text-size-adjust: 100%; }
+
+@media (max-width: 900px) {
+  .content { padding: 20px; }
+  .btn { padding: 12px 18px; }
+}
+
+@media (max-width: 600px) {
+  .content { padding: 16px; }
+  h1 { font-size: 1.4rem; margin-top: 6px; }
+  p { font-size: 0.95rem; }
+  .btn { display: block; width: 100%; box-sizing: border-box; text-align: center; }
+  .navbar { padding: 12px 14px; font-size: 1rem; }
+  .content { min-height: calc(100vh - 48px); }
 }
